@@ -4,16 +4,15 @@ import java.time.LocalDateTime;
 
 public class Main {
 
-    public String pluralize(String word , int num ){
+    public static String pluralize(String word , int num ){
+
         if(num==1){
-          return word;
-        }
-        if(num>0){
-            return word+"s";
+            return "I own " + num +" "+ word;
         }else{
-            return "- num or 0";
+            return "I own " + num +" "+ word+"s";
         }
     }
+
     public static void flipNHeads(int n){
 
         int headFlips = 0;
@@ -40,32 +39,41 @@ public class Main {
         }
         System.out.println("It took " + flipsCounts + " flips to get " + n + " heads in a row.");
     }
+    public static void clock(){
+        int x =0;
+        while (true){
+            LocalDateTime now = LocalDateTime.now();
+            int hour = now.getHour();
+            int minute = now.getMinute();
+            int second = now.getSecond();
+
+            if(x!=second){
+                System.out.println(hour+": "+minute+" :"+second);
+                x=second;
+            }
+
+        }
+    }
+
+
+
 
     public static void main(String[] args) {
-//        System.out.println(new   Main().pluralize("cat",5) )  ;
-//        System.out.println(new   Main().pluralize("cat",1) )  ;
-//        System.out.println(new   Main().pluralize("cat",0) )  ;
-//        System.out.println(new   Main().pluralize("cat",-1) )  ;
+        int dogCount = 1;
+        System.out.println(pluralize("dog", dogCount) + ".");
+
+        int catCount = 2;
+        System.out.println( pluralize("cat", catCount) + ".");
+
+        int turtleCount = 0;
+        System.out.println(pluralize("turtle", turtleCount) + ".");
 
 
-//        flipNHeads(1);
-//        flipNHeads(2);
+        flipNHeads(1);
+
+        clock();
 
 
-
-//        int x =0;
-//        while (true){
-//            LocalDateTime now = LocalDateTime.now();
-//            int hour = now.getHour();
-//            int minute = now.getMinute();
-//            int second = now.getSecond();
-//
-//            if(x!=second){
-//                System.out.println(hour+": "+minute+" :"+second);
-//                x=second;
-//            }
-//
-//        }
 
     }
 
