@@ -69,10 +69,16 @@ public class Library {
     }
 
 
-    public static void main (String[]args) {
+      public static void main (String[]args) {
 
         int i[]={5,5,5};
-        int j[][]={{5,5,5},{6,6,6},{7,7,7}};
+
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
         int int1[]=roll(5);
 
         for (int h = 0; h < int1.length; h++){
@@ -83,8 +89,7 @@ public class Library {
 
         System.out.println(calculateAverages(i));
 
-        for (int n = 0; n < int1.length; n++){
-            System.out.println( arrayOfArrays(j)[n]);
-        }
+        System.out.println( Arrays.toString(arrayOfArrays(weeklyMonthTemperatures)));
+
     }
 }
