@@ -1,4 +1,5 @@
 package basiclibrary;
+import java.util.*;
 
 public class Library {
 
@@ -68,11 +69,70 @@ public class Library {
         return arr[index];
     }
 
+    public static String weatherData(int[][] weatherArr) {
+        HashSet<Integer> weatherSet = new HashSet<>();
+
+        for (int[] ints : weatherArr) {
+            for (int day : ints) {
+                weatherSet.add(day);
+            }
+        }
+
+        if (weatherSet.isEmpty())
+            return "0";
+
+        int min = Collections.min(weatherSet);
+
+        int max = Collections.max(weatherSet);
+
+        StringBuilder response = new StringBuilder();
+
+        response.append("High: ").append(max).append("\n");
+
+        response.append("Low: ").append(min).append("\n");
+
+        for (int i = min; i < max; i++) {
+
+            if (!weatherSet.contains(i)) response.append("Never saw temperature: ").append(i).append("\n");
+
+        }
+
+        return response.toString();
+    }
+
+    public static String tally(List<String> votes) {
+
+        if (votes.isEmpty()) return "0";
+
+        HashSet<String> votedItems = new HashSet<>();
+        votedItems.addAll(votes);
+
+        int numVotes = 0;
+        String winner = null;
+
+        for (String item : votedItems) {
+            int count = Collections.frequency(votes, item);
+            if (numVotes < count) {
+                numVotes = count;
+                winner = String.format("%s received the most votes!", item);
+            } else if (numVotes == count) {
+                winner = "Tie for the winner, a re-vote is needed";
+            }
+        }
+
+        return winner;
+    }
 
     public static void main (String[]args) {
 
         int i[]={5,5,5};
-        int j[][]={{5,5,5},{6,6,6},{7,7,7}};
+
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
         int int1[]=roll(5);
 
         for (int h = 0; h < int1.length; h++){
@@ -83,8 +143,10 @@ public class Library {
 
         System.out.println(calculateAverages(i));
 
-        for (int n = 0; n < int1.length; n++){
-            System.out.println( arrayOfArrays(j)[n]);
-        }
+//        System.out.println( Arrays.toString(arrayOfArrays(weeklyMonthTemperatures)));
+
     }
+
 }
+
+
