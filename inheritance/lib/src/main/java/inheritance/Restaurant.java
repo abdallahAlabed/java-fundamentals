@@ -1,15 +1,22 @@
 package inheritance;
+
 import java.util.ArrayList;
 import java.util.List;
-public class Restaurant {
+
+public class Restaurant implements Reviewable {
     private int stars;
     private int priceCategory;
     private String name;
-    private List<Review> reviews = new ArrayList<Review>();
+    private List<Review> List<Review> reviews = new ArrayList<Review>();
 
     public Restaurant(int priceCategory, String name) {
-        this.priceCategory = priceCategory;
+        if(this.priceCategory >= 0){
+            this.priceCategory = Math.min(priceCategory, 5);
+        }else{
+            this.priceCategory = Math.max(priceCategory, 0);
+        }
         this.name = name;
+        }
 
         public String getName () {
             return name;
@@ -43,29 +50,47 @@ public class Restaurant {
             this.reviews = reviews;
         }
 
+        public String dollarSign ( int numChars){
+            String dollar = "$";
+            String dollarSign = dollar.repeat(this.getPriceCategory());
+            return dollarSign;
+        }
+
+        @Override
         public void addReview (Review review){
             if (!reviews.contains(review)) {
                 reviews.add(review);
                 updateStars();
             }
-        }
-        @Override
+        } 
+
+         @Override
         public void updateStars () {
-            double current = 0.0;
-            for (int i = 0; i < getReviews().size(); i++) {
-                current += getReviews().get(i).getStars();
+            int sum = 0;
+            double avg =0.0;
+            int num =getReviews().size();
+            for (int i = 0; i < num; i++) {
+                sum += getReviews().get(i).getStars();
             }
-            current /= (getReviews().size());
-            current = Math.round(current * 10.0) / 10.0;
-            this.setStars(current);
+            avg = sum /num;
+            avg = Math.round(avg * 10.0) / 10.0;
+            this.setStars(avg);
         }
+
+        @Override
+        public String reviewtoString () {
+            LinkedList<Review> reviews = getReviews();
+            StringBuilder review = new StringBuilder();
+            for (Review value : reviews) {
+                review.append(value.toString());
+                // review +=value.toString();
+            }
+            return review.toString();
+        }
+
         @Override
         public String toString () {
-            String dollar = "$";
-            String dollarSign = dollar.repeat(this.getPriceCategory());
-
-            return "Restaurant{" + "name='" + this.getName() + '\'' + ", stars=" + this.getStars() + ", priceCategory=" + dollarSign + ", " +
+            return "Restaurant{" + "name='" + this.getName() + '\'' + ", stars=" + this.getStars() + ", priceCategory=" + dollarSign(getPriceCategory()) + ", " +
                     "reviews=" + reviews + '}';
         }
-
-    }
+  }
