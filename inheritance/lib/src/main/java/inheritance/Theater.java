@@ -11,12 +11,10 @@ public class Theater implements Reviewable {
     this.name = name;
   }
 
-  @Override
   public String getName() {
     return this.name;
   }
 
-  @Override
   public double getStars() {
     return this.stars;
   }
@@ -54,7 +52,6 @@ public class Theater implements Reviewable {
   }
   }
 
-  @Override
   public LinkedList<Review> getReviews() {
     return this.reviews;
   }
@@ -69,7 +66,7 @@ public class Theater implements Reviewable {
     return review.toString();
   }
 
-  @Override
+  @
   public void updateStars () {
       int sum = 0;
       double avg =0.0;
@@ -84,6 +81,6 @@ public class Theater implements Reviewable {
 
     @Override
     public String toString () {
-      return "Restaurant{" + "name='" + this.getName() + ", stars=" + this.getStars() + ", Movies=" + toMoviesString(getMovies()) + ", " + "reviews=" + reviews + '}';
+      return "Restaurant{" + "name=" + this.getName() + " stars=" + this.getStars() + " Movies=" + toMoviesString(getMovies()) + " " + "reviews=" + reviews +" }";
     }
   }

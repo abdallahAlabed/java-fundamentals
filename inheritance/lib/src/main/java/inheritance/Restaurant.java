@@ -7,7 +7,7 @@ public class Restaurant implements Reviewable {
     private int stars;
     private int priceCategory;
     private String name;
-    private List<Review> List<Review> reviews = new ArrayList<Review>();
+    private List <Review> reviews = new ArrayList<Review>();
 
     public Restaurant(int priceCategory, String name) {
         if(this.priceCategory >= 0){

@@ -51,8 +51,8 @@ public class Review {
   @Override
   public String toString() {
     if (this.getMovie() != null)
-    return "Review{" + "author='" +this.getAuthor() + '\'' + ", body='" + this.getBody() + '\'' + ", Movie=" + this.getMovie()+ ", stars=" + this.getStars() + '}\n';
-    return "Review{" + "author='" +this.getAuthor() + '\'' + ", body='" + this.getBody() + '\'' + ", stars=" + this.getStars() + '}\n';
+    return "Review{" + "author=" +this.getAuthor() + " body=" + this.getBody() + " Movie=" + this.getMovie()+ " stars=" + this.getStars() +" }\n";
+    return "Review{" + "author=" +this.getAuthor() +  " body=" + this.getBody() +  " stars=" + this.getStars() +" }\n";
   }
 }
 
