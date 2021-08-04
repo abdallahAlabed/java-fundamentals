@@ -18,8 +18,6 @@ public class Shop implements Reviewable {
         this.description = description;
   }
 
-//  Methods
-  @Override
   public String getName() {
     return this.name;
   }
@@ -28,7 +26,6 @@ public class Shop implements Reviewable {
     return this.description;
   }
 
-  @Override
   public double getStars() {
     return this.stars;
   }
@@ -83,7 +80,7 @@ public class Shop implements Reviewable {
 
   @Override
   public String toString () {
-    return "Restaurant{" + "name='" + this.getName() + '\'' + ", description=" + this.getDescription()+ ", stars=" + this.getStars() + ", priceCategory=" + dollarSign(getPriceCategory()) + ", " +
-            "reviews=" + reviews + '}';
+    return "Restaurant{" + "name=" + this.getName() +  " description=" + this.getDescription()+ " stars=" + this.getStars() + " priceCategory=" + dollarSign(getPriceCategory()) + " " +
+            "reviews=" + reviews +" }";
   }
 }
