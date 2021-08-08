@@ -1,7 +1,5 @@
-package inheritance;
 
-import java.util.LinkedList;
-
+import java.util.*;
 public interface Reviewable {
 
     public void addReview(Review review);
