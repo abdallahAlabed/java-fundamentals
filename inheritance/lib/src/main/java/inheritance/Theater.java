@@ -1,13 +1,20 @@
- package inheritance;
-import java.util.LinkedList;
+
+import java.util.*;
 
 public class Theater implements Reviewable {
   private String name;
   private double stars = 0.0;
-  private LinkedList<String> movies = new LinkedList<>();
-  private LinkedList<Review> reviews = new LinkedList<>();
+  private List<String> movies;
+  private List<Review> reviews;
+
+  Theater() {
+    this.name = "name";
+  }
 
   Theater(String name) {
+    this();
+    this.movies = new ArrayList<String>();
+    this.reviews = new ArrayList<Review>();
     this.name = name;
   }
 
@@ -23,7 +30,7 @@ public class Theater implements Reviewable {
     this.movies.add(movieTitle);
   }
 
-  public LinkedList<String> getMovies() {
+  public List<String> getMovies() {
     return this.movies;
   }
 
@@ -31,7 +38,11 @@ public class Theater implements Reviewable {
     this.movies.remove(movieTitle);
   }
 
-  public String toMoviesString(LinkedList<String> movies) {
+  public void setStars(int stars) {
+    this.stars = stars;
+  }
+
+  public String toMoviesString(List<String> movies) {
     StringBuilder movieString = new StringBuilder();
     for (int i = 0; i < movies.size() - 1; i++) {
       movieString.append(movies.get(i)).append(", ");
@@ -46,19 +57,18 @@ public class Theater implements Reviewable {
   @Override
   public void addReview(Review review) {
     if (!reviews.contains(review)) {
-      // this.reviews.add(review);
-      review.setReviewable(this);
+      reviews.add(review);
       updateStars();
-  }
+    }
   }
 
-  public LinkedList<Review> getReviews() {
+  public List<Review> getReviews() {
     return this.reviews;
   }
 
   @Override
   public String reviewtoString() {
-    LinkedList<Review> reviews = getReviews();
+    List<Review> reviews = getReviews();
     StringBuilder review = new StringBuilder();
     for (Review value : reviews) {
       review.append(value.toString());
@@ -66,21 +76,23 @@ public class Theater implements Reviewable {
     return review.toString();
   }
 
-  @
-  public void updateStars () {
-      int sum = 0;
-      double avg =0.0;
-      int num =getReviews().size();
-      for (int i = 0; i < num; i++) {
-          sum += getReviews().get(i).getStars();
-      }
-      avg = sum /num;
-      avg = Math.round(avg * 10.0) / 10.0;
-      this.setStars(avg);
+  Integer x = 0;
+
+  public void updateStars() {
+    int sum = 0;
+    double avg = 0.0;
+    int num = getReviews().size();
+    for (int i = 0; i < num; i++) {
+      sum += getReviews().get(i).getStars();
+    }
+    avg = sum / num;
+    avg = Math.round(avg * 10.0) / 10.0;
+    this.setStars((int) avg);
   }
 
-    @Override
-    public String toString () {
-      return "Restaurant{" + "name=" + this.getName() + " stars=" + this.getStars() + " Movies=" + toMoviesString(getMovies()) + " " + "reviews=" + reviews +" }";
-    }
+  @Override
+  public String toString() {
+    return "Restaurant{" + "name=" + this.getName() + " stars=" + this.getStars() + " Movies="
+        + toMoviesString(getMovies()) + " " + "reviews=" + reviews + " }";
   }
+}
